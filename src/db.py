@@ -11,4 +11,16 @@ def get_current_id():
         r.set('counter', 100)
 
     r.incr('counter')
-    return r.get('counter')
+    return int(r.get('counter'))
+
+
+def set_url(key, url):
+    r = redis.Redis(host='localhost', port=6379, db=0)
+
+    r.set(key, url)
+
+
+def get_url(key):
+    r = redis.Redis(host='localhost', port=6379, db=0)
+
+    r.get(key)
