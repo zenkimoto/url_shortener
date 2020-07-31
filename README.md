@@ -34,3 +34,13 @@ Or, if you don't want/need a background service you can just run:
 ` $ redis-server /usr/local/etc/redis.conf`
 
 A script _redis.sh_ is included to start Redis not as a background service.
+
+## Redis Initialization
+
+In terminal, type:
+
+`$ redis-cli`
+
+The Redis prompt appears, type:
+
+`127.0.0.1:6379> SET counter 100`
