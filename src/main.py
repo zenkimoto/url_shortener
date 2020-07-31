@@ -20,7 +20,6 @@ def counter():
 
 @app.route('/<key>')
 def redirect_shorten_url(key):
-    print(key)
     url = get_url(key)
 
     if url == None:
