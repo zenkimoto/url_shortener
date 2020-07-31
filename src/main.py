@@ -1,5 +1,5 @@
 from flask import Flask, redirect, request, render_template
-from src.bijection import *
+from src.shortener import *
 
 app = Flask(__name__)
 
@@ -9,7 +9,7 @@ def index():
 
 @app.route('/test/<int:num>')
 def test(num):
-    return biject_number(num)
+    return convert_to_short_url(num)
 
 @app.route('/<key>')
 def handle_shorten_url(key):

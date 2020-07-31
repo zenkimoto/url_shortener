@@ -1,6 +1,6 @@
 from math import trunc
 
-def biject_number(num):
+def convert_to_short_url(num):
     # a - 97 - 122 => 26
     # A - 65 - 90 => 26
     # 0 - 48 - 57 => 10
@@ -26,7 +26,7 @@ def biject_number(num):
 
     return result
 
-def biject_string(string):
+def convert_to_id(string):
     result = 0
 
     while len(string) > 0:
