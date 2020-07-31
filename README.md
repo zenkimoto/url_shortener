@@ -44,3 +44,13 @@ In terminal, type:
 The Redis prompt appears, type:
 
 `127.0.0.1:6379> SET counter 100`
+
+## To Execute Unit Tests
+
+In terminal, activate virtual environment
+
+`$ source ./venv/bin/activate`
+
+run pytest
+
+`$ pytest`
