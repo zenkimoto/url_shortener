@@ -1,4 +1,5 @@
 import redis
+import json
 
 def _get_connection():
     return redis.Redis(host='localhost', port=6379, db=0)
@@ -17,13 +18,20 @@ def get_current_id():
     return int(r.get('counter'))
 
 
-def set_url(key, url):
+def set_url(key, url, count):
     r = _get_connection()
 
-    r.set(key, url)
+    data = {
+        'url': url,
+        'count': count
+    }
+
+    r.set(key, json.dumps(data))
 
 
 def get_url(key):
     r = _get_connection()
 
-    return r.get(key)
+    data = json.loads(r.get(key))
+
+    return data

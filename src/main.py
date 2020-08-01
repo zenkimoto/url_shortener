@@ -12,12 +12,30 @@ def index():
 
 @app.route('/<key>')
 def redirect_shorten_url(key):
-    url = get_url(key)
+    data = get_url(key)
 
-    if url == None:
+    if data == None:
         abort(404, description="Resource not found")
 
+    url = data['url']
+    count = data['count']
+
+    set_url(key, url, count + 1)
+
     return redirect(url)
+
+
+@app.route('/<key>/stats')
+def get_url_stats(key):
+    data = get_url(key)
+
+    if data == None:
+        abort(404, description="Resource not found")
+
+    # url = data['url']
+    # count = data['count']
+
+    return data
 
 
 @app.route('/shorten', methods=['POST'])
@@ -28,7 +46,7 @@ def shorten_url():
     url = request.json['url']
     id = get_current_id()
     key = convert_to_short_url(id)
-    set_url(key, url)
+    set_url(key, url, 0)
 
     return {
         "shortened_url": "/%s" % key
