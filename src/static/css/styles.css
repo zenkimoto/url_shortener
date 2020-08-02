@@ -21,7 +21,7 @@ body {
 }
 
 .bg-primary {
-    background-color: #1abc9c !important;
+    background-color: #1aadbc !important;
 }
 
 .bg-secondary {
@@ -29,7 +29,7 @@ body {
 }
 
 .btn-primary {
-    background-color: #23957f !important;
+    background-color: #237595 !important;
     border-color: #266f49 !important;
 }
 
@@ -38,9 +38,13 @@ body {
     padding-bottom: 6rem;
 }
 
+.masthead a {
+    color: white;
+}
+
 .masthead-avatar {
-    width: 15%;
-    height: 15%;
+    width: 20%;
+    height: 20%;
 }
 
 form#url-form {
@@ -54,4 +58,17 @@ form#url-form {
 
 #url {
     width: 100%;
+}
+
+#result {
+    width: 80%;
+    border: 2px solid white;
+    margin-top: 25px;
+    padding: 20px;
+    border-radius: 10px;
+    font-size: 1.3em;
+}
+
+#result i {
+    cursor: pointer;
 }

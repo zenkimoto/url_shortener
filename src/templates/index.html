@@ -10,6 +10,8 @@
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
   <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet"
     type="text/css" />
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
   <!-- Custom Styles -->
   <link href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet" type="text/css" />
 </head>
@@ -37,14 +39,16 @@
       </form>
       <!-- Shortend Result -->
       <div id="result" class="d-none">
-        <strong>
-          Shortened URL: <span id="short_url"></span>
-        </strong>
+        <span class="mr-2">
+          <strong>Shortened URL:</strong>
+        </span>
+        <a id="short-url"></a>
+        <i id="copy-icon" class="fa fa-copy ml-3"></i>
       </div>
     </div>
   </header>
 
-  <div class="container">
+  <div class="container mt-4">
     <span>Photo by <a
         href="https://unsplash.com/@jjying?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">JJ
         Ying</a> on <a
@@ -75,9 +79,22 @@
           'dataType': 'json',
         }).done(function (result) {
           $('#result').removeClass('d-none');
-          $('#short_url').html(result.shortened_url);
+          $('#short-url')
+            .html('http://localhost:5000' + result.shortened_url)
+            .attr('href', 'http://localhost:5000' + result.shortened_url);
         });
 
+      });
+
+      $('#copy-icon').on('click', function (e) {
+        var link = $('#short-url').attr('href');
+
+        /* Copy to Clipboard */
+        var $temp = $("<input>");
+        $("body").append($temp);
+        $temp.val(link).select();
+        document.execCommand("copy");
+        $temp.remove();
       });
     });
   </script>
