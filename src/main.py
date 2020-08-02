@@ -2,12 +2,21 @@ from flask import Flask, redirect, request, render_template, make_response, abor
 import json
 from src.shortener import *
 from src.db import *
+import os
+
+env = os.environ.get("FLASK_ENV")
+
+if env == "development":
+    base_url = "http://localhost:5000"
+else:
+    base_url = "http://157.245.231.190"
+
 
 app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('index.html', base_url = base_url)
 
 
 @app.route('/<key>')
@@ -32,7 +41,7 @@ def get_url_stats(key):
     if data == None:
         abort(404, description="Resource not found")
 
-    redirect_url = 'http://localhost:5000/' + key
+    redirect_url = base_url + '/' + key
     url = data['url']
     count = data['count']
 

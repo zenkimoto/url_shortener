@@ -80,8 +80,8 @@
         }).done(function (result) {
           $('#result').removeClass('d-none');
           $('#short-url')
-            .html('http://localhost:5000' + result.shortened_url)
-            .attr('href', 'http://localhost:5000' + result.shortened_url);
+            .html('{{ base_url }}' + result.shortened_url)
+            .attr('href', '{{ base_url }}' + result.shortened_url);
         });
 
       });
