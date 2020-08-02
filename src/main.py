@@ -32,10 +32,11 @@ def get_url_stats(key):
     if data == None:
         abort(404, description="Resource not found")
 
-    # url = data['url']
-    # count = data['count']
+    redirect_url = 'http://localhost:5000/' + key
+    url = data['url']
+    count = data['count']
 
-    return data
+    return render_template('stats.html', redirect_url=redirect_url, url=url, count=count)
 
 
 @app.route('/shorten', methods=['POST'])
